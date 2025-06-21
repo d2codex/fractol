@@ -6,7 +6,7 @@
 #    By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/11 14:44:17 by diade-so          #+#    #+#              #
-#    Updated: 2025/06/21 16:07:31 by diade-so         ###   ########.fr        #
+#    Updated: 2025/06/21 17:23:59 by diade-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 CC = cc
 FLAGS = -Wall -Werror -Wextra -g3
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-INCLUDES = -I./libft -I./includes -I$(MLX_DIR)
+INCLUDES = -I./libft/includes -I./includes -I$(MLX_DIR)
 
 # **************************************************************************** #
 #                                 Target Name                                  #
@@ -38,7 +38,7 @@ MLX_DIR = ./minilibx-linux
 #                                Source Files                                  #
 # **************************************************************************** #
 
-SRC = $(addprefix $(SRC_DIR)/, main.c init.c parse.c print.c validate.c)
+SRC = $(addprefix $(SRC_DIR)/, main.c init.c parse.c print.c)
 
 # **************************************************************************** #
 #                                Object Files                                  #

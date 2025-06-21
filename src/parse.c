@@ -6,11 +6,39 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 12:16:11 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/21 15:59:57 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:16:51 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	is_number(const char *s)
+{
+	int	dot_seen;
+	int	digit_seen;
+
+	dot_seen = 0;
+	digit_seen = 0;
+	if (!s || *s == '\0')
+		return (0);
+	if (*s == '+' || *s == '-')
+		s++;
+	while (*s)
+	{
+		if (*s == '.')
+		{
+			if (dot_seen)
+				return (0);
+			dot_seen = 1;
+		}
+		else if (isdigit(*s))
+			digit_seen = 1;
+		else
+			return (0);
+		s++;
+	}
+	return (digit_seen);
+}
 
 void	parse_mandelbrot_args(int ac, char **av, t_args *d)
 {
@@ -35,6 +63,17 @@ void	parse_julia_args(int ac, char **av, t_args *d)
 		d->color_mode = ft_atoi(av[5]);
 	if (ac >= 7)
 		d->zoom = ft_atof(av[6]);
+}
+
+int	in_range_common_args(t_args *d)
+{
+	if (d->max_iter < MAX_ITER_MIN || d->max_iter > MAX_ITER_MAX)
+		return (0);
+	if (d->color_mode < COLOR_MODE_MIN || d->color_mode > COLOR_MODE_MAX)
+		return (0);
+	if (d->zoom < ZOOM_MIN || d->zoom > ZOOM_MAX)
+		return (0);
+	return (1);
 }
 
 int	parse_check_args(int ac, char **av, t_args *d)

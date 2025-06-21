@@ -6,11 +6,11 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:27:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/20 17:30:03 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:31:50 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fractol.h"
 
 void	print_usage(void)
 {
@@ -31,9 +31,17 @@ void	print_usage(void)
 	ft_printf("  %s zoom%s: float > 0.0 (default: 1.0)\n", YEL, RESET);
 }
 
-int	main(void)
+void	perror_exit(char *msg)
 {
-	print_usage();
-	return (0);
+	perror(msg);
+	exit(EXIT_FAILURE);
 }
+
+void	werror_exit(char *msg)
+{
+	write(2, msg, strlen(msg));
+	print_usage();
+	exit(EXIT_FAILURE);
+}
+	
 
