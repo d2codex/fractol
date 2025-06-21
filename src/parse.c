@@ -6,62 +6,54 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 12:16:11 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/20 18:13:25 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/06/21 15:59:57 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "fractol.h"
-#include <ctype.h>
-#include <stdio.h>
+#include "fractol.h"
 
-static int	is_number(const char *s)
+void	parse_mandelbrot_args(int ac, char **av, t_args *d)
 {
-	int	dot_seen;
-	int	digit_seen;
 
-	dot_seen = 0;
-	digit_seen = 0;
-	if (!s || *s == '\0')
-		return (0);
-	if (*s == '+' || *s == '-')
-		s++;
-	while (*s)
-	{
-		if (*s == '.')
-		{
-			if (dot_seen)
-				return (0);
-			dot_seen = 1;
-		}
-		else if (isdigit(*s))
-			digit_seen = 1;
-		else
-			return (0);
-		s++;
-	}
-	return (digit_seen);
+	if (ac >= 3)
+		d->max_iter = ft_atoi(av[2]);
+	if (ac >= 4)
+		d->color_mode = ft_atoi(av[3]);
+	if (ac >= 5)
+		d->zoom = ft_atof(av[4]);
 }
 
-static int	is_valid_args_format(int ac, char **av)
+void	parse_julia_args(int ac, char **av, t_args *d)
 {
-	int	i;
+	if (ac >= 3)
+		d->julia_real = ft_atof(av[2]);
+	if (ac >= 4)
+		d->julia_imag = ft_atof(av[3]);
+	if (ac >= 5)
+		d->max_iter =ft_atoi(av[4]);
+	if (ac >= 6)
+		d->color_mode = ft_atoi(av[5]);
+	if (ac >= 7)
+		d->zoom = ft_atof(av[6]);
+}
 
-	if (ac < 2)
-		return (0);
-	if (!(ft_strncmp(av[1], "mandelbrot", 10) == 0 ||
-		ft_strncmp(av[1], "julia", 5)== 0))
-		return (0);
-	i = 2;
-	while (i < ac)
-	{
-		if (!is_number(av[i]))
+int	parse_check_args(int ac, char **av, t_args *d)
+{
+	if (d->type == MANDELBROT)
+	{	
+		parse_mandelbrot_args(ac, av, d);
+		if(!in_range_common_args(d))
 			return (0);
-		i++;
+	}
+	else if (d->type == JULIA)
+	{
+		parse_julia_args(ac, av, d);
+		if(!in_range_common_args(d))
+			return (0);
+		if (d->julia_real < REAL_MIN || d->julia_real > REAL_MAX)
+			return (0);
+		if (d->julia_imag < IMAG_MIN || d->julia_imag > IMAG_MAX)
+			return (0);
 	}
 	return (1);
 }
-
-void	init_args(t_args *data, char **av)
-{
-}
-
