@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:05:43 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/21 17:28:57 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:49:20 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,12 @@
 # define FRACTOL_H
 
 #include "libft.h"
+#include "config.h"
 #include <mlx.h>
+#include <X11/keysym.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
-
-#define MAX_ITER_MIN 1
-#define MAX_ITER_MAX 10000
-#define COLOR_MODE_MIN 0
-#define COLOR_MODE_MAX 5
-#define ZOOM_MIN 0.1
-#define ZOOM_MAX 100.0
-#define REAL_MIN -2.0
-#define REAL_MAX 2.0
-#define IMAG_MIN -2.0
-#define IMAG_MAX 2.0
 
 typedef enum e_fractal
 {
@@ -46,6 +37,24 @@ typedef struct s_args
 	double	zoom;
 }	t_args;
 
+typedef struct	s_img
+{
+	void	*img;
+	char	*addr;
+	int	bpp;
+	int	line_len;
+	int	endian;
+}	t_img;
+
+typedef struct s_env
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+	int	width;
+	int	height;
+}	t_env;
+
 // prototypes for init.c
 int	init_parse_args(int ac, char **av, t_args *d);
 
@@ -59,8 +68,12 @@ int	parse_check_args(int ac, char **av, t_args *d);
 // prototypes for print.c
 void	print_usage(void);
 void	perror_exit(char *msg);
+void	werror_exit_args(char *msg);
 void	werror_exit(char *msg);
 
-// prototypes for validate.c
+// prototypes for windows.c
+int	init_window(t_env *env);
+int	close_window(t_env *env);
+int	handle_keypress(int keycode, t_env *env);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/11 14:44:17 by diade-so          #+#    #+#              #
-#    Updated: 2025/06/21 17:23:59 by diade-so         ###   ########.fr        #
+#    Updated: 2025/06/23 16:51:32 by diade-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ MLX_DIR = ./minilibx-linux
 #                                Source Files                                  #
 # **************************************************************************** #
 
-SRC = $(addprefix $(SRC_DIR)/, main.c init.c parse.c print.c)
+SRC = $(addprefix $(SRC_DIR)/, main.c init.c parse.c print.c window.c)
 
 # **************************************************************************** #
 #                                Object Files                                  #

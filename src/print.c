@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:27:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/21 17:31:50 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/06/22 19:49:52 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,15 @@ void	perror_exit(char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void	werror_exit(char *msg)
+void	werror_exit_args(char *msg)
 {
-	write(2, msg, strlen(msg));
+	write(2, msg, ft_strlen(msg));
 	print_usage();
 	exit(EXIT_FAILURE);
 }
-	
 
+void	werror_exit(char *msg)
+{
+	write(2, msg, ft_strlen(msg));
+	exit(EXIT_FAILURE);
+}
