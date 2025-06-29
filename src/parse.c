@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 12:16:11 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/21 17:16:51 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/06/27 12:46:15 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,58 +40,59 @@ int	is_number(const char *s)
 	return (digit_seen);
 }
 
-void	parse_mandelbrot_args(int ac, char **av, t_args *d)
+void	parse_mandelbrot_args(int ac, char **av, t_args *args)
 {
 
 	if (ac >= 3)
-		d->max_iter = ft_atoi(av[2]);
+		args->max_iter = ft_atoi(av[2]);
 	if (ac >= 4)
-		d->color_mode = ft_atoi(av[3]);
+		args->color_mode = ft_atoi(av[3]);
 	if (ac >= 5)
-		d->zoom = ft_atof(av[4]);
+		args->zoom = ft_atof(av[4]);
 }
 
-void	parse_julia_args(int ac, char **av, t_args *d)
+void	parse_julia_args(int ac, char **av, t_args *args)
 {
 	if (ac >= 3)
-		d->julia_real = ft_atof(av[2]);
+		args->julia_real = ft_atof(av[2]);
 	if (ac >= 4)
-		d->julia_imag = ft_atof(av[3]);
+		args->julia_imag = ft_atof(av[3]);
 	if (ac >= 5)
-		d->max_iter =ft_atoi(av[4]);
+		args->max_iter =ft_atoi(av[4]);
 	if (ac >= 6)
-		d->color_mode = ft_atoi(av[5]);
+		args->color_mode = ft_atoi(av[5]);
 	if (ac >= 7)
-		d->zoom = ft_atof(av[6]);
+		args->zoom = ft_atof(av[6]);
 }
 
-int	in_range_common_args(t_args *d)
+int	in_range_common_args(t_args *args)
 {
-	if (d->max_iter < MAX_ITER_MIN || d->max_iter > MAX_ITER_MAX)
+	if (args->max_iter < MAX_ITER_MIN || args->max_iter > MAX_ITER_MAX)
 		return (0);
-	if (d->color_mode < COLOR_MODE_MIN || d->color_mode > COLOR_MODE_MAX)
+	if (args->color_mode < COLOR_MODE_MIN || 
+		args->color_mode > COLOR_MODE_MAX)
 		return (0);
-	if (d->zoom < ZOOM_MIN || d->zoom > ZOOM_MAX)
+	if (args->zoom < ZOOM_MIN || args->zoom > ZOOM_MAX)
 		return (0);
 	return (1);
 }
 
-int	parse_check_args(int ac, char **av, t_args *d)
+int	parse_check_args(int ac, char **av, t_args *args)
 {
-	if (d->type == MANDELBROT)
+	if (args->type == MANDELBROT)
 	{	
-		parse_mandelbrot_args(ac, av, d);
-		if(!in_range_common_args(d))
+		parse_mandelbrot_args(ac, av, args);
+		if(!in_range_common_args(args))
 			return (0);
 	}
-	else if (d->type == JULIA)
+	else if (args->type == JULIA)
 	{
-		parse_julia_args(ac, av, d);
-		if(!in_range_common_args(d))
+		parse_julia_args(ac, av, args);
+		if(!in_range_common_args(args))
 			return (0);
-		if (d->julia_real < REAL_MIN || d->julia_real > REAL_MAX)
+		if (args->julia_real < REAL_MIN || args->julia_real > REAL_MAX)
 			return (0);
-		if (d->julia_imag < IMAG_MIN || d->julia_imag > IMAG_MAX)
+		if (args->julia_imag < IMAG_MIN || args->julia_imag > IMAG_MAX)
 			return (0);
 	}
 	return (1);

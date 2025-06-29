@@ -6,7 +6,7 @@
 #    By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/11 14:44:17 by diade-so          #+#    #+#              #
-#    Updated: 2025/06/23 16:51:32 by diade-so         ###   ########.fr        #
+#    Updated: 2025/06/27 18:30:34 by diade-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 # **************************************************************************** #
 
 CC = cc
-FLAGS = -Wall -Werror -Wextra -g3
+FLAGS = -Wall -Werror -Wextra -g3 -ffast-math
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 INCLUDES = -I./libft/includes -I./includes -I$(MLX_DIR)
 
@@ -38,7 +38,8 @@ MLX_DIR = ./minilibx-linux
 #                                Source Files                                  #
 # **************************************************************************** #
 
-SRC = $(addprefix $(SRC_DIR)/, main.c init.c parse.c print.c window.c)
+SRC = $(addprefix $(SRC_DIR)/, main.c init.c parse.c print.c window.c draw.c \
+      	fractal.c)
 
 # **************************************************************************** #
 #                                Object Files                                  #
