@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:00:44 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/29 17:36:38 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 18:53:36 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	main(int ac, char **av)
 	st.args = &args;
 	st.env = &env;
 	draw_fractal(&st);
-
-	mlx_key_hook(env.win, handle_keypress, &st);
+	mlx_key_hook(env.win, handle_keypress, &env);
 	mlx_hook(env.win, 17, 0, close_window, &env);
 	mlx_expose_hook(env.win, handle_expose, &st);
 	mlx_mouse_hook(env.win, mouse_scroll_bonus, &st);

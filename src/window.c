@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 19:06:06 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/29 18:45:04 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 19:00:54 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@ int	init_window(t_env *env)
 	env->mlx = mlx_init();
 	if (!env->mlx)
 	{
-		printf("mlx");
+		write(2, "mlx\n", 4);
 		return (0);
 	}
-//	printf("mlx: %p, width: %d, height: %d\n", env->mlx, env->width, env->height);
 	env->win = mlx_new_window(env->mlx, env->width, env->height, "fractol");
 	if (!env->win)
 	{
-		printf("win");
+		write(2, "win\n", 4);
 		return (0);
 	}
-//	printf("win: %p, width: %d, height: %d\n", env->win, env->width, env->height);
 	return (1);
 }
 
