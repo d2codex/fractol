@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:36:06 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/27 11:05:21 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:04:06 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,29 @@ void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char *dst;
 
+	if (x < 0 || y < 0)
+	{
+		printf("out of bounds");
+		return ;
+	}
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	if (!dst)
+	{
+		printf("error dst");
+		return ;
+	}
 	*(unsigned int *)dst = color;
 }
 
-int	get_color(int iter, int max_iter, int color_mode)
+int	get_color(double iter, int max_iter, int color_mode)
 {
 	if (iter == max_iter)
-		return (0x000000); // black for points inside the set
+		return (int)(0x000000);
 	if (color_mode == 0)
-		return (0xFFFFFF * iter / max_iter);
+		return (int)(0xFFFFFF * iter / max_iter);
 	else if (color_mode == 1)
-		return ((iter * 5) << 16);
+		return ((int)(iter * 5) << 16);
 	else if (color_mode == 2)
-		return ((iter * 9) << 8);
+		return ((int)(iter * 9) << 8);
 	return (0x000000);
 }
-

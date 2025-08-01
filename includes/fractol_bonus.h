@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   config.h                                           :+:      :+:    :+:   */
+/*   fractol_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/22 19:57:57 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/30 17:27:24 by diade-so         ###   ########.fr       */
+/*   Created: 2025/06/29 16:29:26 by diade-so          #+#    #+#             */
+/*   Updated: 2025/06/29 17:23:24 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONFIG_H
-# define CONFIG_H
-# endif
+#ifndef FRACTOL_BONUS_H
+# define FRACTOL_BONUS_H
 
-#define MAX_ITER_MIN 1
-#define MAX_ITER_MAX 10000
-#define COLOR_MODE_MIN 0
-#define COLOR_MODE_MAX 2
-#define ZOOM_MIN 0.0001
-#define ZOOM_MAX 1000000.0
-#define REAL_MIN -2.0
-#define REAL_MAX 2.0
-#define IMAG_MIN -2.0
-#define IMAG_MAX 2.0
-#define I_SCALE_FACTOR 1
+#include "fractol.h"
 
-#ifndef WIN_WIDTH
-# define WIN_WIDTH 800
-# endif
+int	mouse_scroll_bonus(int button, int x, int y, void *param);
+//int	handle_arrow_keys(int keycode, void *param);
 
-#ifndef WIN_HEIGHT
-# define WIN_HEIGHT 600
-# endif
+#endif

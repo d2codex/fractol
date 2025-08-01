@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:03:25 by diade-so          #+#    #+#             */
-/*   Updated: 2025/06/27 12:47:41 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:13:33 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ int	init_parse_args(int ac, char **av, t_args *args)
 {
 	int	i;
 
-	args->max_iter = 100;
+	args->max_iter = 50;
 	args->color_mode = 0;
 	args->zoom = 5.0;
+	args->zoom_factor = log(args->zoom + 1.0);
+	args->offset_x = 0.0;
+	args->offset_y = 0.0;
 	if (strncmp(av[1], "mandelbrot", 10) == 0)
 		args->type = MANDELBROT;
 	else if (strncmp(av[1], "julia", 5) == 0)

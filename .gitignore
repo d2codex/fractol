@@ -1,2 +1,17 @@
+# Ignore Vim/NeoVim swap files
+*.swp
+*.swo
+
+# Ignore libft and minilibx-linux
+libft/
 minilibx-linux/
-libft
+
+# Ignore object files
+*.o
+*.a
+*.out
+*.so
+*.exe
+
+# Ignore compiled executables
+a.out
